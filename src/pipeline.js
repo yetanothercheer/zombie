@@ -177,7 +177,8 @@ class Pipeline extends Array {
       request.headers.set('authorization',  `Basic ${base64}`);
     }
   }
-
+  
+  static CustomRequest = Request
 
   // -- Retrieve actual resource --
 
@@ -215,7 +216,7 @@ class Pipeline extends Array {
     return consumeBody
       .then(function(body) {
 
-        const httpRequest = new Request({
+        const httpRequest = new this.CustomRequest({
           method:         request.method,
           uri:            request.url,
           headers:        request.headers.toObject(),
